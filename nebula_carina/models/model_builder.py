@@ -16,8 +16,7 @@ class SingleMatchResult(object):
         return self.__data[item]
 
     def __iter__(self):
-        for key, value in self.__data.items():
-            yield key, value
+        yield from self.__data.items()
 
     def __str__(self):
         return str(self.__data)
@@ -32,7 +31,7 @@ class ModelBuilder(object):
     ) -> Iterable[SingleMatchResult]:  # should be model
         output = ', '.join(
             ("DISTINCT " if key == distinct_field else "") + key
-            for key in to_model_dict.keys()
+            for key in to_model_dict
         )
         results = match(pattern, output, condition, order_by, limit)
         return (

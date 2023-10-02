@@ -38,9 +38,8 @@ def create_space(
     if comment:
         comment = f' COMMENT="{comment}"'
     run_ngql(
-        f'CREATE SPACE {"IF NOT EXISTS " if if_not_exists else ""}{name} '
-        f'({", ".join("%s=%s" % (k, v) for k, v in additional_descriptions.items())}){comment or ""};',
-        is_spacial_operation=True
+        f'CREATE SPACE {"IF NOT EXISTS " if if_not_exists else ""}{name} ({", ".join(f"{k}={v}" for k, v in additional_descriptions.items())}){comment or ""};',
+        is_spacial_operation=True,
     )
 
 

@@ -164,10 +164,3 @@ class TestRecord(TestWithNewSpace):
                 self.assertEqual(
                     data_types.Int64.ttype2python_type(tag.props[b'ttl'].value), 291901
                 )
-        # update_vertex_ngql  with condition
-        # update_vertex_ngql yield output
-        # upsert_vertex_ngql  (with condition  yield output)
-        # delete_tag_ngql
-        # delete_tag_ngql  (all tags deleted)
-        # delete_vertex_ngql    (with edge)
-        pass

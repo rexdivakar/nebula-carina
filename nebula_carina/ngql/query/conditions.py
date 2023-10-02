@@ -37,7 +37,7 @@ class NodeConditionLeaf(Condition):
         patterns = pattern.split('__')
         if patterns[-1] in self.OPERATORS:
             self.__op = patterns[-1]
-            self.patterns = patterns[0:-1]
+            self.patterns = patterns[:-1]
         else:
             self.__op = 'eq'
             self.patterns = patterns
@@ -49,7 +49,7 @@ class NodeConditionLeaf(Condition):
             if p == 'id':
                 pattern = f'id({pattern})'
             else:
-                pattern += '.' + p if pattern else p
+                pattern += f'.{p}' if pattern else p
         return pattern
 
     def __str__(self):

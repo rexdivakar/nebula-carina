@@ -6,14 +6,12 @@ class OrderBy(Statement):
 
     def __init__(self, expressions: list[str]):
         def make_expr(expr):
-            if expr[0] == '-':
-                return False, expr[1::]
-            return True, expr
+            return (False, expr[1::]) if expr[0] == '-' else (True, expr)
+
         self.expressions = [make_expr(expression) for expression in expressions]
 
     def __str__(self):
-        return f'ORDER BY ' \
-               f'{", ".join("%s %s" % (expr, "ASC" if is_asc else "DESC") for is_asc, expr in self.expressions)}'
+        return f"""ORDER BY {", ".join(f'{expr} {"ASC" if is_asc else "DESC"}' for is_asc, expr in self.expressions)}"""
 
 
 class Limit(Statement):
